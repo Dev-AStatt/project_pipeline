@@ -1,0 +1,21 @@
+[package]
+name = "project_pipeline"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = {version = "0.9", features = ["dynamic"]} #Remember to remove this before releasing game
+rand = "0.8"
+
+[workspace]
+resolver = "2" #important! wgpu/Bevy needs this!
+
+#Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+#Enable high optimizations for dependancies (inc. Bevy), but not for our code 
+[profile.dev.package."*"]
+opt-level = 3
